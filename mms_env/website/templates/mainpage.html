@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+    <form method="get">
+        <label>Select truck:</label>
+        <select name="registration">
+        {% for j in trucklist %}
+            <OPTION value={{j[1]}}>{{j[1]}}</OPTION>
+        {% endfor %}
+    </select>
+    <input type="submit" name="submit_button" value="View Route Information">
+    <input type="submit" name="submit_button" value="Add GPS Data"> 
+
+    </form>
+</body>
+</html>

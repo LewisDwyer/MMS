@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+
+<h1>{{ mine }}</h1>
+
+<div class="
+wrapper">
+    <canvas id="map" width="1182" height="783" style="border:1px solid #c3c3c3;"></canvas>
+    <canvas id="route" width="1182" height="783"></canvas>
+</div>
+
+<img
+    id="imgSource"
+    src="static/mine.png"
+    style="display:none;"
+  />
+
+<script>
+window.onload = function() {
+    var canvas = document.getElementById("map");
+    var ctx = canvas.getContext("2d");
+    var img = new Image();
+    img.src = 'static/mine.png';
+    ctx.drawImage(img, 0, 0);
+
+};
+
+
+function drawPoint(arr){
+    console.log("drawing")
+    var c = document.getElementById("route");
+    var ctx = c.getContext("2d");
+    ctx.lineWidth = 5;
+    ctx.beginPath()
+    console.log(arr[0][0])
+    ctx.moveTo(arr[0][0], arr[0][1]);
+    for (let i = 1; i < arr.length; i++) {
+        console.log(arr[i]);
+        ctx.lineTo(arr[i][0], arr[i][1]);
+        ctx.strokeStyle = '#ff0000';
+        ctx.stroke();
+    }
+}
+</script>
+
+
+<p>Track route for: {{ truckid }}</p>
+
+<p>
+    <form method="post" action="{{ url_for('map') }}">
+    <label for="firstname">Choose date:</label>
+    <input type="date" id="date" name="date" value="{{date}}" required>
+    <button type="submit">Calculate Speed</button>
+</p>
+
+<p>
+{{ speed }}
+</p>
+
+<p>
+<button type="button" onclick="drawPoint({{ gpspoints }})">Draw</button>
+</p>
+
+<p>
+    <a href="/">BACK</a>
+</p>
+    
+
+</body>
+</html>

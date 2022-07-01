@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+
+    <form method="POST" action="{{ url_for('addGpsData') }}">
+        <label> Enter your GPS data for truck {{truckid}}. Format: degreesLongitude, degreesLatitude, dateTime \n</label>
+        <br>
+        <textarea rows = "20" cols = "50" name = "gpsData">{{ formatting }}</textarea>
+        <input type="submit"/>
+    </form>
+
+    <p>
+        <a href="/">BACK</a>
+    </p>
+</body>
+</html>
